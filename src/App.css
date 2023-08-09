@@ -1,3 +1,10 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
 /*Table of Content
 
 1.) app
@@ -10,21 +17,22 @@
 1.) app*/
 .container{
   display: flex;
-
 }
 
 /*navbar*/
-header{
+/* header {
   width: 100vw;
   background-color: gray;
   justify-content: space-between;
-}#navbar{
+}
+#navbar {
   justify-items: center;
   gap: 10px;
-}#logo{
+}
+#logo {
   padding-left: 10px;
-}#nav-list{
+}
+#nav-list {
   gap: 5px;
   padding-right: 20px;
-}
-
+} */
