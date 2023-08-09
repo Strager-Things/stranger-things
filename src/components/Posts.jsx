@@ -18,29 +18,43 @@ export default function Posts() {
 
   return (
     <>
-      <div>
-        <h2>All posts</h2>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            setUser(!user);
-          }}
-        >
-          User: {`${user}`}
-        </button>
-        {posts.map((post) => {
-          return (
-            <>
-              <div key={post._id}>
-                <h3>Title: {post.title}</h3>
-                <p>Desc.: {post.description}</p>
-                <p>Price: {post.price}</p>
-                <p>Location: {post.location}</p>
-                {user && <button>Send Message</button>}
-              </div>
-            </>
-          );
-        })}
+      <div className="postContainer">
+        <div className="titleContainer">
+          <h2>All posts</h2>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setUser(!user);
+            }}
+          >
+            User: {`${user}`}
+          </button>
+        </div>
+        <div className="postMenu">
+          <div className="searchBarContainer">
+            <label>
+              Search Bar: <input type="text" placeholder="Search..." />
+            </label>
+          </div>
+          <div className="addBtnContainer">
+            {user && <button>Add Post</button>}
+          </div>
+        </div>
+        <div className="listings">
+          {posts.map((post) => {
+            return (
+              <>
+                <div key={post._id}>
+                  <h3>Title: {post.title}</h3>
+                  <p>Desc.: {post.description}</p>
+                  <p>Price: {post.price}</p>
+                  <p>Location: {post.location}</p>
+                  {user && <button>Send Message</button>}
+                </div>
+              </>
+            );
+          })}
+        </div>
       </div>
     </>
   );

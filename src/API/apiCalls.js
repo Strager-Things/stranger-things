@@ -13,6 +13,7 @@ export const getPosts = async () => {
 };
 
 //register user
+//need username and password
 export const registerUser = async (username, password) => {
   try {
     const response = await fetch(`${apiUrl}/users/register`, {
@@ -33,6 +34,7 @@ export const registerUser = async (username, password) => {
 };
 
 //user logs in
+//need username and password
 export const userLogin = async (username, password) => {
   try {
     const response = await fetch(`${apiUrl}/users/login`, {
@@ -51,5 +53,63 @@ export const userLogin = async (username, password) => {
     return result;
   } catch (error) {
     console.error("Error in loging in", error);
+  }
+};
+
+//make a new post
+//need user's authentication token, and form contents
+export const createPost = async (
+  userToken,
+  title,
+  description,
+  price,
+  willDeliver
+) => {
+  try {
+    const response = await fetch(`${apiUrl}/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+      body: JSON.stringify({
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          willDeliver: willDeliver,
+        },
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error with creating post", error);
+  }
+};
+
+export const editPost = async (
+  userToken,
+  title,
+  description,
+  price,
+  willDeliver,
+  postId
+) => {
+  try {
+    const response = await fetch(`${apiUrl}/posts/${postId}`, {
+      method: "POST",
+      header: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
+      },
+      body: JSON.stringify({
+        post: { title: title, description: description },
+      }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error with editing post", error);
   }
 };
