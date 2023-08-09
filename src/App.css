@@ -7,12 +7,15 @@
 
 /*Table of Content
 
-app
-navbar
+1.) app
+2.) navbar
+3.) posts
+4.) messages
+5.) login/sign up
 
 
-*/
-.container {
+1.) app*/
+.container{
   display: flex;
 }
 
