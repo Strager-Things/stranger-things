@@ -2,12 +2,12 @@
 
 ## Components & Routes
 ### main
-[X] Navbar - /
-[] Sign up - /signup
+ [X] Navbar - /
+    [ ] Sign up - /signup
 [] Log in -/login
 ### posts
-[ ] Post page - /posts
-[ ] Post bar (Search and add) - /posts
+- [ ] Post page - /posts
+-[ ] Post bar (Search and add) - /posts
 [ ] Single Post - /posts
 [ ] Post message - /post/:id
 [ ] AddPost - /post/new
