@@ -10,6 +10,7 @@
 1.) app*/
 .container{
   display: flex;
+  flex-wrap: wrap;
 }#root {
   max-width: 1280px;
   margin: 0 auto;
@@ -31,4 +32,16 @@ header {
 }#nav-list {
   gap: 5px;
   padding-right: 20px;
+}
+/*posts*/
+#posts{
+  flex-direction: column;
+  align-content: center;
+}#search-bar{
+  align-content: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: gray;
+}#search{
+  align-self: center;
 }
