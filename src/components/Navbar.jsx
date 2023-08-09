@@ -4,9 +4,9 @@ import { Link, Outlet } from "react-router-dom";
 export default function Navbar() {
   return (
     <>
-      <header id="navbar">
+      <header id="navbar" className="container">
         <span id="logo">Logo</span>
-        <nav id="nav-list">
+        <nav id="nav-list" className="container">
           {
             //Links to different routes
           }{" "}

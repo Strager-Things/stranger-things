@@ -6,14 +6,14 @@ import Posts from "./components/Posts";
 function App() {
   return (
     <>
-      <div className="container">
+      
         <Routes>
           <Route path="/" element={<Navbar />}>
             <Route path="/login" element={<div>login</div>} />
             <Route path="/posts" element={<Posts />} />
           </Route>
         </Routes>
-      </div>
+      
     </>
   );
 }
