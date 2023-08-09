@@ -4,14 +4,14 @@ export default function Posts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    try {
-      const postResults = getPosts();
-      if (postResults.success == true) {
-        setPosts(postResults.data.posts);
+    async function fetchPosts() {
+      try {
+        setPosts(await getPosts());
+      } catch (error) {
+        console.log("Error in retrieving posts", error);
       }
-    } catch (error) {
-      console.log("Error in retrieving posts", error);
     }
+    fetchPosts();
   }, []);
 
   return (
@@ -19,7 +19,6 @@ export default function Posts() {
       <div>
         <h2>All posts</h2>
         {posts.map((post) => {
-          console.log(post);
           return (
             <>
               <div key={post._id}>
