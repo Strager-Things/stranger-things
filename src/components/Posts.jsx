@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getPosts } from "../API/apiCalls";
+import Searchbar from "./Searchbar";
 export default function Posts() {
   const [posts, setPosts] = useState([]);
 
@@ -16,8 +17,9 @@ export default function Posts() {
 
   return (
     <>
-      <div>
+      <div id="posts" className="container">
         <h2>All posts</h2>
+        <Searchbar/>
         {posts.map((post) => {
           return (
             <>
