@@ -1,8 +1,27 @@
-# React + Vite
+#  Stranger Things
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Components & Routes
+### main
+[X] Navbar - /
+[ ] Sign up - /signup
+[ ] Log in -/login
+### posts
+[ ] Post page - /posts
+[ ] Post bar (Search and add) - /posts
+[ ] Single Post - /posts
+[ ] Post message - /post/:id
+[ ] AddPost - /post/new
+[ ] Edit Post - /post/:id
+### messages
+[ ] Messages page - /messages
+[ ] Messages container (to me / from me) - /messages
+[ ] Single message - /post/messages/:id
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## CSS
+### Classes
+- container
+- 
+### ID's
+- navbar
+- log
+- nav-list
