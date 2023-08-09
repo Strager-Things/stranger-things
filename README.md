@@ -3,8 +3,8 @@
 ## Components & Routes
 ### main
 [X] Navbar - /
-[ ] Sign up - /signup
-[ ] Log in -/login
+[] Sign up - /signup
+[] Log in -/login
 ### posts
 [ ] Post page - /posts
 [ ] Post bar (Search and add) - /posts
