@@ -104,7 +104,12 @@ export const editPost = async (
         Authorization: `Bearer ${userToken}`,
       },
       body: JSON.stringify({
-        post: { title: title, description: description },
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          willDeliver: willDeliver,
+        },
       }),
     });
     const result = await response.json();
