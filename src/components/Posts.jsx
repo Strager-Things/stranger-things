@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { getPosts } from "../API/apiCalls";
 import Searchbar from "./Searchbar";
 export default function Posts() {
+  //user is not authenticated
+  const [user, setUser] = useState(false);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -20,15 +22,24 @@ export default function Posts() {
       <div id="posts" className="container">
         <h2>All posts</h2>
         <Searchbar/>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setUser(!user);
+          }}
+        >
+          User: {`${user}`}
+        </button>
+
         {posts.map((post) => {
           return (
             <>
               <div key={post._id}>
-                <h3>{post.title}</h3>
-                <p>{post.description}</p>
-                <p>{post.price}</p>
-                <p>{post.location}</p>
-                <button>Send Message</button>
+                <h3>Title: {post.title}</h3>
+                <p>Desc.: {post.description}</p>
+                <p>Price: {post.price}</p>
+                <p>Location: {post.location}</p>
+                {user && <button>Send Message</button>}
               </div>
             </>
           );
