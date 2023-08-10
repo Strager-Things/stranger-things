@@ -11,6 +11,7 @@ function App() {
           <Route path="/" element={<Navbar />}>
             <Route path="/login" element={<div>login</div>} />
             <Route path="/posts" element={<Posts />} />
+            <Route path="/posts/:id" element={<div>new post</div>}/>
           </Route>
         </Routes>
       
