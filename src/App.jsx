@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Navbar/>}>
           <Route path='/login' element={<div>login</div>}/>
-          <Route path='/posts' element={<div>posts</div>}/>
+          <Route path='/posts' element={<Posts token={token}/>}/>
           <Route path="/posts/:id" element={<div>new post</div>}/>
         </Route>
       </Routes>
