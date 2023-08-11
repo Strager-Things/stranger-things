@@ -12,12 +12,12 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Navbar/>}>
-          <Route path='/login' element={<div>login</div>}/>
+          <Route path='/login' element={<Register token={token} setToken={setToken}></Register>}/>
           <Route path='/posts' element={<Posts token={token}/>}/>
           <Route path="/posts/:id" element={<div>new post</div>}/>
         </Route>
       </Routes>
-      <Register token={token} setToken={setToken}></Register>
+      
 
     </>
   );
