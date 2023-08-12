@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react"
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Register({ token, setToken}){
     const BASE_URL = 'https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT';
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
-    
+
+    const navigate = useNavigate();
+
     const min = 8;
     const max = 16;
     
@@ -15,7 +19,7 @@ export default function Register({ token, setToken}){
     async function handleRegister(event){
         event.preventDefault();
         try{
-            formValidate(username, password);
+            formValidate(username, password, password2);
             const request = await fetch(`${BASE_URL}/users/register`, {
                 method: "POST",
                 headers: {
@@ -31,8 +35,10 @@ export default function Register({ token, setToken}){
             const result = await request.json();
             // console.log(result);
             if(!result.success){
+                console.log(result)
                 setUserName("");
                 setPassword("");
+                setPassword2("");
                 setSuccess("");
                 setError(result.error.message)
             }else{
@@ -40,9 +46,12 @@ export default function Register({ token, setToken}){
                 setSuccess(result.data.message);
                 setUserName("");
                 setPassword("");
-                // sessionStorage.setItem(token);
+                setPassword2("");
+                sessionStorage.setItem("token", token);
+                // console.log(sessionStorage.getItem("token"));
                 console.log(result);
             // console.log(success);
+                navigate("/posts");
             }   
         }catch(error){
             setError(error.message);
@@ -50,7 +59,7 @@ export default function Register({ token, setToken}){
         }
     }
 
-    function formValidate(username, password){
+    function formValidate(username, password, password2){
         if (username.length < min || password.length < min){
             setSuccess("");
             throw new Error("Username or password input needs to be greater than 8 and less than 16 characters. Please Try Again.");
@@ -58,6 +67,14 @@ export default function Register({ token, setToken}){
         } else if(username.length > max || password.length > max){
             setSuccess("");
             throw new Error("Username or password input needs to be greater than 8 and less than 16 characters. Please Try Again.")
+        } else if(username.includes(" ") || password.includes(" ")){
+            setError("");
+            setSuccess("");
+            throw new Error("Username and password cannot accept spaces. Please Try Again.")
+        } else if(password !== password2){
+            setError("");
+            setSuccess("");
+            throw new Error("Passwords do not match")
         }
     }
 
@@ -73,6 +90,11 @@ export default function Register({ token, setToken}){
                 <label>
                     Password: <input required value={password} onChange={e =>{
                         setPassword(e.target.value);
+                    }}/>
+                </label>
+                <label>
+                    Confirm Password: <input required value={password2} onChange={e =>{
+                        setPassword2(e.target.value);
                     }}/>
                 </label>
                 <input type="submit" value="Submit"/>
