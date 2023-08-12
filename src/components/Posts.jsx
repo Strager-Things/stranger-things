@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
 import { getPosts } from "../API/apiCalls";
 import Searchbar from "./Searchbar";
-export default function Posts() {
+export default function Posts({token}) {
   //user is not authenticated
   const [user, setUser] = useState(false);
   const [posts, setPosts] = useState([]);
 
+  
   useEffect(() => {
     async function fetchPosts() {
       try {
         setPosts(await getPosts());
+        if(token){setUser(true);} //set user true to show the send messege button
       } catch (error) {
         console.log("Error in retrieving posts", error);
       }
     }
     fetchPosts();
-  }, []);
+  }, [token]);//add a dependency
 
   return (
     <>
@@ -25,7 +27,6 @@ export default function Posts() {
         <button
           onClick={(e) => {
             e.preventDefault();
-            setUser(!user);
           }}
         >
           User: {`${user}`}
