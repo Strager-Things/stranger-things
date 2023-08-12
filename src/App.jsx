@@ -17,6 +17,7 @@ function App() {
           <Route path="/posts/:id" element={<div>new post</div>}/>
         </Route>
       </Routes>
+      <Register token={token} setToken={setToken}></Register>
       
 
     </>
