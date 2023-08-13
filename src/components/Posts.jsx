@@ -17,7 +17,7 @@ export default function Posts({token}) {
       }
     }
     fetchPosts();
-  }, [token, barStatus]);//add a dependency
+  }, [token]);//add a dependency
 
   return (
     <>
