@@ -25,7 +25,7 @@ export const filterList = (query, list)=>{
 export default function Searchbar({posts, setPosts, barStatus, setBarStatus}){
     const [query, setQuery] = useState("");//set state from input each time it changes
     
-    useEffect(()=>{
+    useEffect(()=>{//bug found when a letter is deleted and another one is added it wont show post
         async function fetchPosts() { //async function from posts 
             try {
                 setPosts(await getPosts());
