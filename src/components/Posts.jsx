@@ -5,23 +5,27 @@ export default function Posts() {
   //user is not authenticated
   const [user, setUser] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [barStatus, setBarStatus] = useState(false);//create a state to see if searchbar is active
 
   useEffect(() => {
     async function fetchPosts() {
       try {
         setPosts(await getPosts());
+        console.log("posts:",posts);
       } catch (error) {
         console.log("Error in retrieving posts", error);
       }
     }
     fetchPosts();
-  }, []);
+  }, [barStatus]);//add a dependency to check for empty input
+  
+
 
   return (
     <>
       <div id="posts" className="container">
-        <h2>All posts</h2>
-        <Searchbar/>
+        <h2>All posts</h2>{//send props ---v
+      } <Searchbar posts={posts} setPosts={setPosts} barStatus={barStatus} setBarStatus={setBarStatus}/>
         <button
           onClick={(e) => {
             e.preventDefault();
