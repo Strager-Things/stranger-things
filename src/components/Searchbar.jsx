@@ -17,7 +17,7 @@ export const filterList = (query, list)=>{
     console.log("New List :", filterList)
     return filterList;//return the new list
 
-export default function Searchbar(){
+export default function Searchbar({posts, setPosts, barStatus, setBarStatus}){
 
     return(
         <div id="search-bar" className="container">
