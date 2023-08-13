@@ -8,31 +8,27 @@ import { getPosts } from "../API/apiCalls";
 //function tu create a new list based on input
 export const filterList = (query, list)=>{
     console.log("wer in function")
-    //set input tu lowercase
+    //create new array to store filter items
     const filterList = [];
-    // const newList = list.map(e=>e.title);
-    // console.log("new list:", newList);
-    // console.log("query:",query)
+    // loop tru each element and add it to the list console.log("query:",query)
     list.forEach((e)=>{
         //console.log("element:",e);
-        if(e.title.includes(query)){
+        if(e.title.includes(query)){//check if the search input matches any title
             console.log(`${e} includes ${query}`)
-            filterList.push(e);
+            filterList.push(e);//add to list
         }
     })
     console.log("New List :", filterList)
-    return filterList;
+    return filterList;//return the new list
 
 }
-
-
-
+//searchbar component               added some props 
 export default function Searchbar({posts, setPosts, barStatus, setBarStatus}){
 
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState("");//set state from input each time it changes
     
     useEffect(()=>{
-        async function fetchPosts() {
+        async function fetchPosts() { //async function from posts 
             try {
                 setPosts(await getPosts());
                 console.log("posts:",posts);
@@ -40,22 +36,21 @@ export default function Searchbar({posts, setPosts, barStatus, setBarStatus}){
               console.log("Error in retrieving posts", error);
             }
         }
-        if(query){
-            const postToRender = filterList(query, posts);
-            setPosts(postToRender);    
+        if(query){//if the input is not empty 
+            const postToRender = filterList(query, posts);//query for lists
+            setPosts(postToRender);    //change state of posts
         }else{
-            fetchPosts();
+            fetchPosts();//fetch old posts
         }
-    },[query])
-
+    },[query])//dependency changes every type
 
     return(
         <div id="search-bar" className="container">
             <h3>Posts</h3>
             <label id="search">Search:
                 <input type="text"
-                onChange={e => setQuery(e.target.value)} />
-            </label>
+                onChange={e => setQuery(e.target.value)} />{//everytime the input changes
+}           </label>
             <button><Link to={'new-post'}>Add</Link></button>
         </div>
     )
