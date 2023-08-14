@@ -27,7 +27,7 @@ function App() {
                                           token={token}  
                                           posts={posts} 
                                           setPosts={setPosts}/>}/>
-          <Route path="/posts/:id" element={<Post 
+          <Route path="/posts/:id/message" element={<Post 
                                               posts={posts}/>}/>
         </Route>
       </Routes>
