@@ -1,8 +1,5 @@
-import Posts from "./Posts"
+
 import {useParams} from 'react-router-dom'
-
-
-
 
 export default function Post({posts}){
     const filter = [];//array with the post we are looking for
