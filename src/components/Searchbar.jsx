@@ -22,7 +22,8 @@ export const filterList = (query, list)=>{
     return filterList;//return the new list
 }
 
-export default function Searchbar({posts, setPosts, barStatus, setBarStatus}){
+//search bar component
+export default function Searchbar({posts, setPosts}){
     const [query, setQuery] = useState("");//set state from input each time it changes
     
     useEffect(()=>{//bug found when a letter is deleted and another one is added it wont show post
