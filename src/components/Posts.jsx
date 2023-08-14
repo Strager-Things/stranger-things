@@ -12,7 +12,7 @@ export function Post({post, user}){
       <p>Desc.: {post.description}</p>
       <p>Price: {post.price}</p>
       <p>Location: {post.location}</p>
-      {user && <Link to={`${post._id}`}><button>Send Message</button></Link>}
+      {user && <Link to={`${post._id}/message`}><button>Send Message</button></Link>}
     </div>
   )
 }
