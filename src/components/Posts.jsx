@@ -1,35 +1,39 @@
 import { useState, useEffect } from "react";
 import { getPosts } from "../API/apiCalls";
 import Searchbar from "./Searchbar";
-export default function Posts({token}) {
+
+
+export default function Posts({token, username, loggedIn, setLoggedIn, loggedOut, setLoggedOut}) {
   //user is not authenticated
   const [user, setUser] = useState(false);
   const [posts, setPosts] = useState([]);
-
+  const [barStatus, setBarStatus] = useState(false);//create a state to see if searchbar is active
   
   useEffect(() => {
     async function fetchPosts() {
       try {
+        // console.log(token)
         setPosts(await getPosts());
-        if(token){setUser(true);} //set user true to show the send messege button
+        console.log("Token:", token)
+        if(token){setLoggedIn(true);} //set user true to show the send messege button
+        // console.log(loggedIn);
       } catch (error) {
         console.log("Error in retrieving posts", error);
       }
     }
     fetchPosts();
   }, [token]);//add a dependency
-
   return (
     <>
       <div id="posts" className="container">
         <h2>All posts</h2>
-        <Searchbar/>
+        <Searchbar posts={posts} setPosts={setPosts} barStatus={barStatus} setBarStatus={setBarStatus}/>
         <button
           onClick={(e) => {
             e.preventDefault();
           }}
         >
-          User: {`${user}`}
+          User: {`${username}`}
         </button>
 
         {posts.map((post) => {
@@ -40,7 +44,7 @@ export default function Posts({token}) {
                 <p>Desc.: {post.description}</p>
                 <p>Price: {post.price}</p>
                 <p>Location: {post.location}</p>
-                {user && <button>Send Message</button>}
+                {loggedIn && <button>Send Message</button>}
               </div>
             </>
           );
