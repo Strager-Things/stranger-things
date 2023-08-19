@@ -2,10 +2,10 @@ import { useState, useEffect } from "react"
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Register({ token, setToken}){
+export default function Register({ token, setToken, password, setPassword, username, setUserName}){
     const BASE_URL = 'https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT';
-    const [username, setUserName] = useState("");
-    const [password, setPassword] = useState("");
+    // const [username, setUserName] = useState("");
+    // const [password, setPassword] = useState("");
     const [password2, setPassword2] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
@@ -36,18 +36,19 @@ export default function Register({ token, setToken}){
             // console.log(result);
             if(!result.success){
                 console.log(result)
-                setUserName("");
-                setPassword("");
+                // setUserName("");
+                // setPassword("");
                 setPassword2("");
                 setSuccess("");
                 setError(result.error.message)
             }else{
                 setToken(result.data.token);
                 setSuccess(result.data.message);
-                setUserName("");
-                setPassword("");
+                // setUserName("");
+                // setPassword("");
                 setPassword2("");
-                sessionStorage.setItem("token", token);
+                // console.log("Register token:", result.data.token)
+                sessionStorage.setItem("token",`${result.data.token}`);
                 // console.log(sessionStorage.getItem("token"));
                 console.log(result);
             // console.log(success);
@@ -100,7 +101,7 @@ export default function Register({ token, setToken}){
                 <input type="submit" value="Submit"/>
             </form>
             {success ? success && <p>{success}</p> : error && <p>{error}</p>}
-            
+            {/* {sessionStorage.setItem("token",`${token}`)} */}
         </>
     )
 }

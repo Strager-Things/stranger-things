@@ -2,10 +2,10 @@ import { useState, useEffect } from "react"
 import { Link, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-export default function Login({ token, setToken}){
+export default function Login({ token, setToken, password, setPassword, username, setUserName}){
     const BASE_URL = 'https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT';
-    const [username, setUserName] = useState("");
-    const [password, setPassword] = useState("");
+    // const [username, setUserName] = useState("");
+    // const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
@@ -36,7 +36,7 @@ export default function Login({ token, setToken}){
                 setError(result.error.message)
             }else{
                 setToken(result.data.token)
-                sessionStorage.setItem("token", token);
+                sessionStorage.setItem("token", `${result.data.token}`);
                 navigate("/posts");
             }
             // return result
@@ -74,6 +74,7 @@ export default function Login({ token, setToken}){
                 </label>
                 <input type="submit" value="Submit"/>
             </form>
+            {/* {sessionStorage.setItem("token",`${token}`)} */}
             <Link to={"/register"}>Register</Link>
             {error && <p>{error}</p>}
         </>

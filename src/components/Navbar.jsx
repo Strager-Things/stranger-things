@@ -12,7 +12,8 @@ export default function Navbar() {
           }{" "}
           <Link to={"/"}>home</Link>
           <Link to={"/posts"}>posts</Link>
-          <Link to={"/login"}>login</Link>
+          {/* {console.log("beeeeeep: ", sessionStorage.getItem("token"))} */}
+          {sessionStorage.getItem("token") === null ? <Link to={"/login"}>login</Link> : <Link to={"/logout"}>logout</Link>}
         </nav>
       </header>
       <Outlet />
