@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login({ token, setToken, password, setPassword, username, setUserName}){
     const BASE_URL = 'https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT';
-    // const [username, setUserName] = useState("");
-    // const [password, setPassword] = useState("");
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
