@@ -26,8 +26,6 @@ function App() {
         </Route>
       </Routes>
       {/* <Register token={token} setToken={setToken}></Register> */}
-      
-
     </>
   );
 }

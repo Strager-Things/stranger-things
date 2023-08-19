@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getPosts } from "../API/apiCalls";
 import Searchbar from "./Searchbar";
 
+
 export default function Posts({token, username, loggedIn, setLoggedIn, loggedOut, setLoggedOut}) {
   //user is not authenticated
   const [user, setUser] = useState(false);
@@ -22,7 +23,6 @@ export default function Posts({token, username, loggedIn, setLoggedIn, loggedOut
     }
     fetchPosts();
   }, [token]);//add a dependency
-  // console.log("Posts token: ", sessionStorage.getItem("token"));
   return (
     <>
       <div id="posts" className="container">
