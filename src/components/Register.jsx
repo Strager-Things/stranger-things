@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Register({ token, setToken, password, setPassword, username, setUserName}){
-    const BASE_URL = 'https://strangers-things.herokuapp.com/api/2209-FTB-ET-WEB-FT';
+    const BASE_URL = 'https://strangers-things.herokuapp.com/api/2209-acc-pt-web-pt-d';
     const [password2, setPassword2] = useState("");
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
