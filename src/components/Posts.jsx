@@ -1,6 +1,7 @@
 import { useState, useEffect} from "react";
 import { getPosts } from "../API/apiCalls";
 import Searchbar from "./Searchbar";
+
 import {Link} from 'react-router-dom';
 
 //Single post render
@@ -17,7 +18,12 @@ export function Post({post, user}){
   )
 }
 //Page component
-export default function Posts({token, posts, setPosts}) {
+
+
+
+
+
+export default function Posts({token,posts, setPosts, username, loggedIn, setLoggedIn, loggedOut, setLoggedOut}) {
 
   //user is not authenticated
   const [user, setUser] = useState(false);
@@ -25,16 +31,21 @@ export default function Posts({token, posts, setPosts}) {
   useEffect(() => {
     async function fetchPosts() {
       try {
+        // console.log(token)
         setPosts(await getPosts());
 
+
         if(token){setUser(true);} //set user true to show the send messege button
+
+        console.log("Token:", sessionStorage.getItem("token"))
+        if(token){setLoggedIn(true);} //set user true to show the send messege button
+        // console.log(loggedIn);
       } catch (error) {
         console.log("Error in retrieving posts", error);
       }
     }
     fetchPosts();
   }, [token]);//add a dependency
-
   return (
     <>
       <div id="posts" className="container">
@@ -45,12 +56,14 @@ export default function Posts({token, posts, setPosts}) {
             e.preventDefault();
           }}
         >
-          User: {`${user}`}
+          User: {`${username}`}
         </button>
+
         {posts.map((post)=>{
           return(
             <Post key={post._id} post={post} user={user}/>
           )
+
         })}
 
       </div>
