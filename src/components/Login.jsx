@@ -8,13 +8,14 @@ export default function Login({ token, setToken, password, setPassword, username
 
     const navigate = useNavigate();
 
-    const min = 8;
-    const max = 16;
+    const min = 8;//minimum number of characters for username and password
+    const max = 16;//maximum number of characters for username and password
 
+    //on submit this function will login the user through api call
     async function handleLogin(event){
         event.preventDefault();
         try {
-            formValidate(username, password);
+            formValidate(username, password);//call validate function to notify and make sure user does valid inputs
             const response = await fetch(`${BASE_URL}/users/login`, {
               method: "POST",
               headers: {
@@ -29,12 +30,15 @@ export default function Login({ token, setToken, password, setPassword, username
             });
             const result = await response.json();
             console.log(result);
+            //if the api call returns a false success(meaning user input is invalid) will prompt user to retry with valid inputs
             if(!result.success){
                 console.log(result)
                 setError(result.error.message)
+            //if the api call returns a true success we want to store important values in state variables
             }else{
-                setToken(result.data.token)
+                //goal is to have the token stored in session storage so that as long as the user doesn't open a new tab or close tab, we will have access to their token from login or register
                 sessionStorage.setItem("token", `${result.data.token}`);
+                setToken(sessionStorage.getItem("token"));
                 navigate("/posts");
             }
             // return result
@@ -45,11 +49,13 @@ export default function Login({ token, setToken, password, setPassword, username
     }
 
     function formValidate(username, password){
+        //validate for user inputing characters under 8
         if (username.length < min || password.length < min){
             throw new Error("Username or password input needs to be greater than 8 and less than 16 characters. Please Try Again.");
-            // setError(error);
+        //validate for user inputing characters above 16
         } else if(username.length > max || password.length > max){
             throw new Error("Username or password input needs to be greater than 8 and less than 16 characters. Please Try Again.")
+        //validate for user inputing a space into input text
         } else if(username.includes(" ") || password.includes(" ")){
             setError("");
             throw new Error("Username and password cannot accept spaces. Please Try Again.")

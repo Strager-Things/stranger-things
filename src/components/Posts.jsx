@@ -14,7 +14,7 @@ export default function Posts({token, username, loggedIn, setLoggedIn, loggedOut
       try {
         // console.log(token)
         setPosts(await getPosts());
-        console.log("Token:", token)
+        console.log("Token:", sessionStorage.getItem("token"))
         if(token){setLoggedIn(true);} //set user true to show the send messege button
         // console.log(loggedIn);
       } catch (error) {
