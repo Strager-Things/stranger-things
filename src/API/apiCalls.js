@@ -163,19 +163,21 @@ export const deletePost = async (postId, userToken) => {
 //create a new message
 export const createMessage = async (postId, userToken, content) => {
   try {
+    console.log("were in create message function",userToken)
     const response = await fetch(`${apiUrl}/posts/${postId}/messages`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        Authroization: `Bearer ${userToken}`,
+        'Content-Type': "application/json",
+        'Authorization': `Bearer ${userToken}`,
       },
       body: JSON.stringify({
         message: {
           content: content,
-        },
-      }),
+        }
+      })
     });
     const result = await response.json();
+    console.log("Message sent:",result);
     return result;
   } catch (error) {
     console.error("Error in creating message", error);
