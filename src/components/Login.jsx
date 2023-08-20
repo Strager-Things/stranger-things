@@ -38,6 +38,8 @@ export default function Login({ token, setToken, password, setPassword, username
             }else{
                 //goal is to have the token stored in session storage so that as long as the user doesn't open a new tab or close tab, we will have access to their token from login or register
                 sessionStorage.setItem("token", `${result.data.token}`);
+                sessionStorage.setItem("username", `${username}`);
+                
                 setToken(sessionStorage.getItem("token"));
                 navigate("/posts");
             }

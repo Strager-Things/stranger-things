@@ -15,10 +15,10 @@ import Logout from './components/Logout'
 import PostForm from './components/PostForm'
 
 function App() {
-  const [token, setToken] = useState(null)
+  const [token, setToken] = useState(sessionStorage.getItem("token"))
   const [loggedIn, setLoggedIn] = useState(false);
   const [loggedOut, setLoggedOut] = useState(true);
-  const [username, setUserName] = useState("");
+  const [username, setUserName] = useState(sessionStorage.getItem("username"));
   const [posts, setPosts] = useState([]);//add posts
   const [password, setPassword] = useState("");
 
