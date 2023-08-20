@@ -50,7 +50,7 @@ export default function Searchbar({posts, setPosts, barStatus, setBarStatus}){
                 type="text"
                 onChange={e=>setQuery(e.target.value)} />
             </label>
-            <button><Link to={'new-post'}>Add</Link></button>
+            <button><Link to={'/posts/:id'}>Add</Link></button>
         </div>
     )
 }
