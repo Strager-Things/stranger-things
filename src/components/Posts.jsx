@@ -12,6 +12,7 @@ export function Post({post, user}){
       <h3>Title: {post.title}</h3>
       <p>Desc.: {post.description}</p>
       <p>Price: {post.price}</p>
+      {/* <p>Delivery: {post.willDeliver}</p> */}
       <p>Location: {post.location}</p>
       {user && <Link to={`${post._id}/message`}><button>Send Message</button></Link>}
     </div>
@@ -35,10 +36,12 @@ export default function Posts({token,posts, setPosts, username, loggedIn, setLog
         setPosts(await getPosts());
 
 
-        if(token){setUser(true);} //set user true to show the send messege button
+        // if(token){setUser(true);} //set user true to show the send messege button
 
-        console.log("Token:", sessionStorage.getItem("token"))
+        console.log("Token:", token)
         if(token){setLoggedIn(true);} //set user true to show the send messege button
+        console.log(loggedIn)
+        console.log(username);
         // console.log(loggedIn);
       } catch (error) {
         console.log("Error in retrieving posts", error);
@@ -61,7 +64,7 @@ export default function Posts({token,posts, setPosts, username, loggedIn, setLog
 
         {posts.map((post)=>{
           return(
-            <Post key={post._id} post={post} user={user}/>
+            <Post key={post._id} post={post} user={loggedIn}/>
           )
 
         })}

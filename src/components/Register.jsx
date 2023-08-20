@@ -40,6 +40,7 @@ export default function Register({ token, setToken, password, setPassword, usern
             //if the api call returns a true success we want to store important values in state variables
             }else{
                 //goal is to have the token stored in session storage so that as long as the user doesn't open a new tab or close tab, we will have access to their token from login or register
+                sessionStorage.setItem("username", `${username}`);
                 sessionStorage.setItem("token",`${result.data.token}`);
                 //still having issues with token  correctly being stored on certain page refreshes
                 setToken(sessionStorage.getItem("token")); 
