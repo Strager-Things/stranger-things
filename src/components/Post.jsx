@@ -1,5 +1,5 @@
 import { createMessage } from '../API/apiCalls';
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 
 
 export default function Post({posts, token}){
@@ -15,6 +15,7 @@ export default function Post({posts, token}){
     const post = filter[0]; //get the object
     console.log("post:",post);
     
+    const navigate = useNavigate();
     //event handler function-------------------
     const handleSubmit = (e)=>{
         //handler when message is subit
@@ -33,6 +34,7 @@ export default function Post({posts, token}){
         //send message 
         console.log("token:",post._id)
         createMessage(post._id, token, formJson.message);
+        navigate('/posts');
     }
 
 
