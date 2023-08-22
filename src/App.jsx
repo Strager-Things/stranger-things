@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+ //import the css
 import './App.css'
+//import from react router
+import {Routes, Route} from 'react-router-dom'
+//import from react
+import { useState} from 'react'
+//import components
+import Navbar from './components/Navbar'
+import Register from './components/Register'
+
+import Posts from './components/Posts'
+import Post from './components/Post'
+import Login from './components/Login'
+import Logout from './components/Logout'
+import PostForm from './components/PostForm'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [token, setToken] = useState(sessionStorage.getItem("token"))
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedOut, setLoggedOut] = useState(true);
+  const [username, setUserName] = useState(sessionStorage.getItem("username"));
+  const [posts, setPosts] = useState([]);//add posts
+  const [password, setPassword] = useState("");
+
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Routes>
+        <Route path='/' element={<Navbar/>}>
+          <Route path="/posts/:id/message" element={<Post 
+                                              posts={posts}
+                                              token={token}/>}/>
+          <Route path='/login' element={<Login token={token} setToken={setToken} username={username} setUserName={setUserName} password={password} setPassword={setPassword}/>}/>
+          <Route path='/posts' element={<Posts token={token} posts={posts} setPosts={setPosts} username={username} loggedIn={loggedIn} setLoggedIn={setLoggedIn} loggedOut={loggedOut} setLoggedOut={setLoggedOut}/> }/>
+          <Route path="/posts/:id" element={<PostForm token={token}></PostForm>}/>
+          <Route path="/register" element={<Register token={token} setToken={setToken} username={username} setUserName={setUserName} password={password} setPassword={setPassword}></Register>}/>
+          <Route path="/logout" element={<Logout setLoggedIn={setLoggedIn} setUserName={setUserName} setPassword={setPassword} setLoggedOut={setLoggedOut} setToken={setToken}></Logout>}/>
+        </Route>
+      </Routes>
+      {/* <Register token={token} setToken={setToken}></Register> */}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
